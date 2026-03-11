@@ -1,7 +1,19 @@
 {
   "name": "obs-pokedex",
   "packageManager": "yarn@4.13.0",
+  "scripts": {
+    "dev": "yarn nx run-many -t dev",
+    "dev:api": "yarn nx dev api",
+    "dev:web": "yarn nx dev web",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "build": "yarn nx run-many -t build",
+    "test": "yarn nx run-many -t test",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write ."
+  },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.6",
     "@nx/devkit": "22.5.4",
     "@nx/js": "^22.5.4",
     "@nx/playwright": "22.5.4",
