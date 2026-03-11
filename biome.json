@@ -206,8 +206,26 @@
 			],
 			"linter": {
 				"rules": {
+					"correctness": {
+						"noNodejsModules": "off",
+						"noUndeclaredDependencies": "off"
+					},
+					"performance": {
+						"noNamespaceImport": "off"
+					},
 					"style": {
 						"noDefaultExport": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": ["packages/**/src/index.ts"],
+			"linter": {
+				"rules": {
+					"performance": {
+						"noBarrelFile": "off",
+						"noReExportAll": "off"
 					}
 				}
 			}

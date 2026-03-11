@@ -1,6 +1,6 @@
 /// <reference types='vitest' />
 
-import { join } from 'node:path'
+import * as path from 'node:path'
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin'
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin'
 import react from '@vitejs/plugin-react'
@@ -26,22 +26,16 @@ export default defineConfig(() => ({
 			// Change this to the formats you want to support.
 			// Don't forget to update your package.json as well.
 			formats: ['es' as const],
-			name: 'data-access',
+			name: 'shared-data-access',
 		},
-		outDir: '../../../dist/packages/pokemon/data-access',
+		outDir: '../../../dist/packages/shared/data-access',
 		reportCompressedSize: true,
 		rollupOptions: {
 			// External packages that should not be bundled into your library.
-			external: [
-				'react',
-				'react-dom',
-				'react/jsx-runtime',
-				'@obs-pokedex/shared-data-access',
-				'@tanstack/react-query',
-			],
+			external: ['react', 'react-dom', 'react/jsx-runtime'],
 		},
 	},
-	cacheDir: '../../../node_modules/.vite/packages/pokemon/data-access',
+	cacheDir: '../../../node_modules/.vite/packages/shared/data-access',
 	plugins: [
 		react(),
 		nxViteTsPaths(),
@@ -49,19 +43,19 @@ export default defineConfig(() => ({
 		dts({
 			entryRoot: 'src',
 			pathsToAliases: false,
-			tsconfigPath: join(import.meta.dirname, 'tsconfig.lib.json'),
+			tsconfigPath: path.join(import.meta.dirname, 'tsconfig.lib.json'),
 		}),
 	],
 	root: import.meta.dirname,
 	test: {
 		coverage: {
 			provider: 'v8' as const,
-			reportsDirectory: '../../../coverage/packages/pokemon/data-access',
+			reportsDirectory: '../../../coverage/packages/shared/data-access',
 		},
 		environment: 'jsdom',
 		globals: true,
 		include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-		name: 'data-access',
+		name: 'shared-data-access',
 		reporters: ['default'],
 		watch: false,
 	},

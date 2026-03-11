@@ -1,6 +1,6 @@
 {
-	"devDependencies": {
-		"@testing-library/react": "workspace:*"
+	"dependencies": {
+		"axios": "workspace:*"
 	},
 	"exports": {
 		".": {
@@ -10,6 +10,6 @@
 			"types": "./dist/index.d.ts"
 		}
 	},
-	"name": "@obs-pokedex/pokemon-feature",
+	"name": "@obs-pokedex/shared-data-access",
 	"version": "0.0.1"
 }

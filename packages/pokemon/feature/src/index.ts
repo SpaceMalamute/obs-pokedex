@@ -1,1 +1,1 @@
-export * from './lib/feature.tsx'
+export { Feature } from './lib/feature.tsx'

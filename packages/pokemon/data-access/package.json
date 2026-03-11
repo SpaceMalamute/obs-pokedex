@@ -1,12 +1,18 @@
 {
+	"dependencies": {
+		"@tanstack/react-query": "workspace:*"
+	},
+	"devDependencies": {
+		"@obs-pokedex/shared-data-access": "workspace:*"
+	},
 	"exports": {
 		".": {
-			"import": "./index.mjs",
-			"require": "./index.js"
+			"@obs-pokedex/source": "./src/index.ts",
+			"default": "./dist/index.js",
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
 		}
 	},
-	"main": "./index.js",
-	"name": "data-access",
-	"types": "./index.d.ts",
+	"name": "@obs-pokedex/pokemon-data-access",
 	"version": "0.0.1"
 }

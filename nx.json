@@ -1,69 +1,69 @@
 {
-	"$schema": "./node_modules/nx/schemas/nx-schema.json",
-	"generators": {
-		"@nx/react": {
-			"application": {
-				"babel": true,
-				"bundler": "vite",
-				"linter": "none",
-				"style": "scss"
-			},
-			"component": {
-				"style": "scss"
-			},
-			"library": {
-				"linter": "none",
-				"style": "scss",
-				"unitTestRunner": "vitest"
-			}
-		}
-	},
-	"namedInputs": {
-		"default": ["{projectRoot}/**/*", "sharedGlobals"],
-		"production": [
-			"default",
-			"!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-			"!{projectRoot}/tsconfig.spec.json",
-			"!{projectRoot}/src/test-setup.[jt]s"
-		],
-		"sharedGlobals": []
-	},
-	"plugins": [
-		{
-			"options": {
-				"build": {
-					"buildDepsName": "build-deps",
-					"configName": "tsconfig.lib.json",
-					"targetName": "build",
-					"watchDepsName": "watch-deps"
-				},
-				"typecheck": {
-					"targetName": "typecheck"
-				}
-			},
-			"plugin": "@nx/js/typescript"
-		},
-		{
-			"options": {
-				"buildDepsTargetName": "build-deps",
-				"buildTargetName": "build",
-				"devTargetName": "dev",
-				"previewTargetName": "preview",
-				"serveStaticTargetName": "serve-static",
-				"serveTargetName": "serve",
-				"testTargetName": "test",
-				"typecheckTargetName": "typecheck",
-				"watchDepsTargetName": "watch-deps"
-			},
-			"plugin": "@nx/vite/plugin"
-		},
-		{
-			"options": {
-				"ciTargetName": "test-ci",
-				"testMode": "watch",
-				"testTargetName": "test"
-			},
-			"plugin": "@nx/vitest"
-		}
-	]
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "babel": true,
+        "bundler": "vite",
+        "linter": "none",
+        "style": "scss"
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "linter": "none",
+        "style": "scss",
+        "unitTestRunner": "vitest"
+      }
+    }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/src/test-setup.[jt]s"
+    ],
+    "sharedGlobals": []
+  },
+  "plugins": [
+    {
+      "options": {
+        "build": {
+          "buildDepsName": "build-deps",
+          "configName": "tsconfig.lib.json",
+          "targetName": "build",
+          "watchDepsName": "watch-deps"
+        },
+        "typecheck": {
+          "targetName": "typecheck"
+        }
+      },
+      "plugin": "@nx/js/typescript"
+    },
+    {
+      "options": {
+        "buildDepsTargetName": "build-deps",
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static",
+        "serveTargetName": "serve",
+        "testTargetName": "test",
+        "typecheckTargetName": "typecheck",
+        "watchDepsTargetName": "watch-deps"
+      },
+      "plugin": "@nx/vite/plugin"
+    },
+    {
+      "options": {
+        "ciTargetName": "test-ci",
+        "testMode": "watch",
+        "testTargetName": "test"
+      },
+      "plugin": "@nx/vitest"
+    }
+  ]
 }
