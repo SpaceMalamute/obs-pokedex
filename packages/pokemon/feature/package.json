@@ -6,7 +6,7 @@
 		}
 	},
 	"main": "./index.js",
-	"name": "data-access",
+	"name": "feature",
 	"types": "./index.d.ts",
 	"version": "0.0.1"
 }

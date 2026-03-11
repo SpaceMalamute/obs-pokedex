@@ -1,36 +1,222 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.6/schema.json",
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true
-  },
-  "files": {
-    "ignoreUnknown": false,
-    "includes": ["apps/**", "packages/**", "*.json", "*.ts"]
-  },
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "space",
-    "indentWidth": 2
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true
-    }
-  },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "double"
-    }
-  },
-  "assist": {
-    "enabled": true,
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
-    }
-  }
+	"$schema": "https://biomejs.dev/schemas/2.4.6/schema.json",
+	"assist": {
+		"actions": {
+			"recommended": true,
+			"source": {
+				"organizeImports": "on",
+				"useSortedAttributes": "on",
+				"useSortedInterfaceMembers": "on",
+				"useSortedKeys": "on",
+				"useSortedProperties": "on"
+			}
+		},
+		"enabled": true
+	},
+	"files": {
+		"ignoreUnknown": false,
+		"includes": [
+			"./biome.json",
+			"apps/**/package.json",
+			"apps/**/tsconfig.json",
+			"packages/**/package.json",
+			"packages/**/tsconfig.json",
+			"apps/**/*.ts",
+			"apps/**/*.tsx",
+			"packages/**/*.ts",
+			"packages/**/*.tsx",
+			"apps/**/*.scss",
+			"apps/**/*.css",
+			"packages/**/*.scss",
+			"packages/**/*.css",
+			"apps/**/vite.config.mts",
+			"packages/**/vite.config.mts",
+			"*.ts"
+		]
+	},
+	"formatter": {
+		"attributePosition": "auto",
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineEnding": "lf",
+		"lineWidth": 80
+	},
+	"javascript": {
+		"formatter": {
+			"arrowParentheses": "always",
+			"attributePosition": "auto",
+			"bracketSameLine": true,
+			"jsxQuoteStyle": "single",
+			"quoteProperties": "asNeeded",
+			"quoteStyle": "single",
+			"semicolons": "asNeeded",
+			"trailingCommas": "all"
+		}
+	},
+	"json": {
+		"assist": {
+			"enabled": true
+		},
+		"formatter": {
+			"enabled": true,
+			"trailingCommas": "none"
+		},
+		"linter": {
+			"enabled": true
+		},
+		"parser": {
+			"allowComments": true
+		}
+	},
+	"linter": {
+		"domains": {
+			"project": "all",
+			"react": "all",
+			"test": "all",
+			"types": "all"
+		},
+		"enabled": true,
+		"rules": {
+			"a11y": "error",
+			"complexity": "error",
+			"correctness": "error",
+			"performance": "error",
+			"security": "error",
+			"style": "error",
+			"suspicious": "error"
+		}
+	},
+	"overrides": [
+		{
+			"includes": [
+				"apps/**/*.ts",
+				"apps/**/*.tsx",
+				"apps/**/*.scss",
+				"apps/**/*.css",
+				"apps/**/vite.config.mts",
+				"apps/**/*.test.ts",
+				"apps/**/*.test.tsx",
+				"apps/**/*.spec.ts",
+				"apps/**/*.spec.tsx",
+				"packages/**/*.ts",
+				"packages/**/*.tsx",
+				"packages/**/*.scss",
+				"packages/**/*.css",
+				"packages/**/vite.config.mts",
+				"packages/**/*.test.ts",
+				"packages/**/*.test.tsx",
+				"packages/**/*.spec.ts",
+				"packages/**/*.spec.tsx"
+			],
+			"linter": {
+				"rules": {
+					"complexity": {
+						"noExcessiveLinesPerFunction": "off"
+					},
+					"correctness": {
+						"noRestrictedElements": {
+							"level": "error",
+							"options": {
+								"elements": {
+									"button": "button is not allowed, use Button component instead"
+								}
+							}
+						},
+						"noSolidDestructuredProps": "off",
+						"noUnresolvedImports": "off",
+						"useImageSize": "off",
+						"useQwikClasslist": "off",
+						"useQwikMethodUsage": "off",
+						"useQwikValidLexicalScope": "off"
+					},
+					"performance": {
+						"noImgElement": "off",
+						"useSolidForComponent": "off"
+					},
+					"security": {
+						"noSecrets": "off"
+					},
+					"style": {
+						"noJsxLiterals": "off",
+						"noMagicNumbers": "off",
+						"noRestrictedImports": {
+							"level": "error",
+							"options": {
+								"paths": {
+									"@/admin-console/services/backend-service.ts": {
+										"importNames": ["adminConsole"],
+										"message": "Use Service.adminConsole instead of @/admin-console/services/admin-console-service.ts"
+									},
+									"axios": {
+										"allowImportNames": ["AxiosError", "HttpStatusCode"],
+										"message": "Use a custom instance of Axios"
+									},
+									"react-i18next": {
+										"message": "Use @/common/hooks/use-translation/useTranslation.ts instead of react-i18next"
+									},
+									"react-icons": {
+										"allowImportNames": ["fa", "fa6", "IconBaseProps"],
+										"message": "Only 'react-icons/fa' and 'react-icons/fa6' are allowed"
+									},
+									"react-tooltip": {
+										"message": "Use @/shared/core/components/tooltip/tooltip.tsx instead of react-tooltip"
+									}
+								}
+							}
+						},
+						"useConsistentCurlyBraces": "off",
+						"useExportsLast": "off",
+						"useNamingConvention": "off",
+						"useNumericSeparators": "off"
+					},
+					"suspicious": {
+						"noReactSpecificProps": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": [
+				"apps/**/*.test.ts",
+				"apps/**/*.test.tsx",
+				"apps/**/*.spec.ts",
+				"apps/**/*.spec.tsx",
+				"packages/**/*.test.ts",
+				"packages/**/*.test.tsx",
+				"packages/**/*.spec.ts",
+				"packages/**/*.spec.tsx"
+			],
+			"linter": {
+				"rules": {
+					"style": {
+						"useComponentExportOnlyModules": "off"
+					},
+					"suspicious": {
+						"noMisplacedAssertion": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": [
+				"apps/**/vite.config.mts",
+				"packages/**/vite.config.mts",
+				"*.ts"
+			],
+			"linter": {
+				"rules": {
+					"style": {
+						"noDefaultExport": "off"
+					}
+				}
+			}
+		}
+	],
+	"vcs": {
+		"clientKind": "git",
+		"defaultBranch": "main",
+		"enabled": true,
+		"useIgnoreFile": true
+	}
 }

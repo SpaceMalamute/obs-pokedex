@@ -1,44 +1,44 @@
 /// <reference types='vitest' />
 
-import { nxCopyAssetsPlugin } from "@nx/vite/plugins/nx-copy-assets.plugin";
-import { nxViteTsPaths } from "@nx/vite/plugins/nx-tsconfig-paths.plugin";
-import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
+import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin'
+import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
 
 export default defineConfig(() => ({
-  root: import.meta.dirname,
-  cacheDir: "../../node_modules/.vite/apps/web",
-  server: {
-    port: 4200,
-    host: "localhost",
-  },
-  preview: {
-    port: 4200,
-    host: "localhost",
-  },
-  plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(["*.md"])],
-  // Uncomment this if you are using workers.
-  // worker: {
-  //   plugins: () => [ nxViteTsPaths() ],
-  // },
-  build: {
-    outDir: "../../dist/apps/web",
-    emptyOutDir: true,
-    reportCompressedSize: true,
-    commonjsOptions: {
-      transformMixedEsModules: true,
-    },
-  },
-  test: {
-    name: "web",
-    watch: false,
-    globals: true,
-    environment: "jsdom",
-    include: ["{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-    reporters: ["default"],
-    coverage: {
-      reportsDirectory: "../../coverage/apps/web",
-      provider: "v8" as const,
-    },
-  },
-}));
+	// Uncomment this if you are using workers.
+	// worker: {
+	//   plugins: () => [ nxViteTsPaths() ],
+	// },
+	build: {
+		commonjsOptions: {
+			transformMixedEsModules: true,
+		},
+		emptyOutDir: true,
+		outDir: '../../dist/apps/web',
+		reportCompressedSize: true,
+	},
+	cacheDir: '../../node_modules/.vite/apps/web',
+	plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
+	preview: {
+		host: 'localhost',
+		port: 4200,
+	},
+	root: import.meta.dirname,
+	server: {
+		host: 'localhost',
+		port: 4200,
+	},
+	test: {
+		coverage: {
+			provider: 'v8' as const,
+			reportsDirectory: '../../coverage/apps/web',
+		},
+		environment: 'jsdom',
+		globals: true,
+		include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+		name: 'web',
+		reporters: ['default'],
+		watch: false,
+	},
+}))
