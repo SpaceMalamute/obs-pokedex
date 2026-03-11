@@ -29,18 +29,20 @@ if (app.Environment.IsDevelopment())
 // Map endpoints
 app.MapPokemonEndpoints();
 
-
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.Lifetime.ApplicationStarted.Register(() =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
+    var baseUrl = app.Urls.FirstOrDefault() ?? "http://localhost:5000";
+    var api = $"{baseUrl}/api/v1/pokemons";
+    var docs = $"{baseUrl}/scalar/v1";
+    var esc = "\x1b";
+    Console.WriteLine();
+    Console.WriteLine($"    {esc}[32m🚀 Pokedex API running{esc}[0m");
+    Console.WriteLine();
+    Console.WriteLine($"       {esc}[90mAPI   {esc}[0m {esc}[36m{api}{esc}[0m");
+    Console.WriteLine($"       {esc}[90mDocs  {esc}[0m {esc}[36m{docs}{esc}[0m");
+    Console.WriteLine();
+});
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
