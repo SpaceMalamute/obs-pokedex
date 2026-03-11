@@ -1,20 +1,30 @@
 namespace Application.Pokemons;
 
 using Application.Pokemons.Dtos;
+using Domain.Enums;
 using Domain.Repositories;
 
-public record GetAllPokemonsQuery;
+public record GetAllPokemonsQuery(
+    int Page = 1,
+    int PageSize = 20,
+    string? Search = null,
+    PokemonType? Type = null);
 
 public static class GetAllPokemonsHandler
 {
-    public static async Task<IReadOnlyList<PokemonResponse>> Handle(
+    public static async Task<PaginatedResponse<PokemonResponse>> Handle(
         GetAllPokemonsQuery query,
         IPokemonRepository repository,
         CancellationToken ct)
     {
-        var pokemons = await repository.GetAllAsync(ct);
+        var (pokemons, total) = await repository.GetPagedAsync(
+            query.Page,
+            query.PageSize,
+            query.Search,
+            query.Type,
+            ct);
 
-        return [.. pokemons.Select(p => new PokemonResponse(
+        var items = pokemons.Select(p => new PokemonResponse(
             p.Id,
             p.PokedexNumber,
             p.Name,
@@ -28,6 +38,8 @@ public static class GetAllPokemonsHandler
             p.SpecialDefense,
             p.Speed,
             p.SpriteUrl,
-            p.Description))];
+            p.Description)).ToList();
+
+        return new PaginatedResponse<PokemonResponse>(items, total, query.Page, query.PageSize);
     }
 }

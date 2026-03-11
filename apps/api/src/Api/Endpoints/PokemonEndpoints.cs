@@ -12,12 +12,22 @@ public static class PokemonEndpoints
         var group = app.MapGroup("/api/v1/pokemons")
             .WithTags("Pokemons");
 
-        group.MapGet("/", async (IMessageBus bus, CancellationToken ct) =>
+        group.MapGet("/", async (
+            int? page,
+            int? pageSize,
+            string? search,
+            Domain.Enums.PokemonType? type,
+            IMessageBus bus,
+            CancellationToken ct) =>
         {
-            var pokemons = await bus.InvokeAsync<IReadOnlyList<PokemonResponse>>(
-                new GetAllPokemonsQuery(), ct);
+            var result = await bus.InvokeAsync<PaginatedResponse<PokemonResponse>>(
+                new GetAllPokemonsQuery(
+                    Page: page ?? 1,
+                    PageSize: pageSize ?? 20,
+                    Search: search,
+                    Type: type), ct);
 
-            return TypedResults.Ok(pokemons);
+            return TypedResults.Ok(result);
         })
         .WithName("GetAllPokemons");
 
