@@ -1,14 +1,8 @@
 {
   "version": "1.11.0",
   "installedAt": "2026-03-10T10:28:28.984Z",
-  "technologies": [
-    "react",
-    "dotnet"
-  ],
-  "targets": [
-    "claude",
-    "copilot"
-  ],
+  "technologies": ["react", "dotnet"],
+  "targets": ["claude", "copilot"],
   "options": {
     "withSkills": true,
     "withRules": true,
