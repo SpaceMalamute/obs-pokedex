@@ -2,6 +2,7 @@
 
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin'
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin'
+import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
@@ -19,7 +20,12 @@ export default defineConfig(() => ({
 		reportCompressedSize: true,
 	},
 	cacheDir: '../../node_modules/.vite/apps/web',
-	plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
+	plugins: [
+		tanstackRouter(),
+		react(),
+		nxViteTsPaths(),
+		nxCopyAssetsPlugin(['*.md']),
+	],
 	preview: {
 		host: 'localhost',
 		port: 4200,
